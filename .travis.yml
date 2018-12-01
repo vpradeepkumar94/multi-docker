@@ -3,7 +3,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t  vpradeepkumar/react-test -f ./client/Dockerfile.dev
+  - docker build -t vpradeepkumar/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run vpradeepkumar/react-test npm run tests -- --coverage
@@ -17,6 +17,6 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   - docker push vpradeepkumar/multi-client
-  - docker push  vpradeepkumar/multi-nginx
+  - docker push vpradeepkumar/multi-nginx
   - docker push vpradeepkumar/multi-server
   - docker push vpradeepkumar/multi-worker
